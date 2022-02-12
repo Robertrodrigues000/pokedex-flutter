@@ -1,51 +1,51 @@
 class PokeAPI {
-  List<Pokemon>? pokemon;
+  List<Pokemon>? pokemons;
 
-  PokeAPI({required this.pokemon});
+  PokeAPI({this.pokemons});
 
   PokeAPI.fromJson(Map<String, dynamic> json) {
     if (json['pokemon'] != null) {
-      List<Pokemon> pokemon = List<Pokemon>.empty();
+      pokemons = List<Pokemon>.empty(growable: true);
       json['pokemon'].forEach((v) {
-        pokemon.add(new Pokemon.fromJson(v));
+        pokemons?.add(new Pokemon.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.pokemon != null) {
-      data['pokemon'] = this.pokemon!.map((v) => v.toJson()).toList();
+    if (this.pokemons != null) {
+      data['pokemon'] = this.pokemons!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class Pokemon {
-  late int id;
-  late String num;
-  late String name;
-  late String img;
-  late List<String> type;
-  late String height;
-  late String weight;
-  late String candy;
-  late String egg;
-  late List<NextEvolution> nextEvolution;
-  late List<PrevEvolution> prevEvolution;
+  int? id;
+  String? num;
+  String? name;
+  String? img;
+  List<String>? type;
+  String? height;
+  String? weight;
+  String? candy;
+  String? egg;
+  List<NextEvolution>? nextEvolution;
+  List<PrevEvolution>? prevEvolution;
 
   Pokemon(
-      {required this.id,
-      required this.num,
-      required this.name,
-      required this.img,
-      required this.type,
-      required this.height,
-      required this.weight,
-      required this.candy,
-      required this.egg,
-      required this.nextEvolution,
-      required this.prevEvolution});
+      { this.id,
+       this.num,
+       this.name,
+       this.img,
+       this.type,
+       this.height,
+       this.weight,
+       this.candy,
+       this.egg,
+      this.nextEvolution,
+       this.prevEvolution});
 
   Pokemon.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -58,13 +58,13 @@ class Pokemon {
     candy = json['candy'];
     egg = json['egg'];
     if (json['next_evolution'] != null) {
-       List<NextEvolution> nextEvolution = List<NextEvolution>.empty();
+       List<NextEvolution> nextEvolution = List<NextEvolution>.empty(growable: true);
       json['next_evolution'].forEach((v) {
         nextEvolution.add(new NextEvolution.fromJson(v));
       });
     }
     if (json['prev_evolution'] != null) {
-       List<PrevEvolution> prevEvolution = List<PrevEvolution>.empty();
+       List<PrevEvolution> prevEvolution = List<PrevEvolution>.empty(growable: true);
       json['prev_evolution'].forEach((v) {
         prevEvolution.add(new PrevEvolution.fromJson(v));
       });
@@ -84,11 +84,11 @@ class Pokemon {
     data['egg'] = this.egg;
     if (this.nextEvolution != null) {
       data['next_evolution'] =
-          this.nextEvolution.map((v) => v.toJson()).toList();
+          this.nextEvolution?.map((v) => v.toJson()).toList();
     }
     if (this.prevEvolution != null) {
       data['prev_evolution'] =
-          this.prevEvolution.map((v) => v.toJson()).toList();
+          this.prevEvolution?.map((v) => v.toJson()).toList();
     }
     return data;
   }

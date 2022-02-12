@@ -12,13 +12,13 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
   final _$pokeAPIAtom = Atom(name: '_PokeApiStoreBase.pokeAPI');
 
   @override
-  PokeAPI get pokeAPI {
+  PokeAPI? get pokeAPI {
     _$pokeAPIAtom.reportRead();
     return super.pokeAPI;
   }
 
   @override
-  set pokeAPI(PokeAPI value) {
+  set pokeAPI(PokeAPI? value) {
     _$pokeAPIAtom.reportWrite(value, super.pokeAPI, () {
       super.pokeAPI = value;
     });
